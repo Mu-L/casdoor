@@ -75,11 +75,9 @@ class PaymentEditPage extends React.Component {
       .then((res) => {
         if (res.msg === "") {
           Setting.showMessage("success", `Successfully invoiced`);
-          this.setState({
-            paymentName: this.state.payment.name,
-          });
+          window.location.reload();
         } else {
-          Setting.showMessage("error", res.msg);
+          Setting.showMessage(res.msg.includes("成功") ? "info" : "error", res.msg);
         }
       })
       .catch(error => {
